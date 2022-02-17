@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage.ToolbarItems>
+    <ToolbarItem Text="Add Car  List"
+Clicked="CarListAddedClicked" />
+</ContentPage.ToolbarItems>
+<ListView x:Name="listView"
+Margin="20"
+ItemSelected="OnListViewItemSelected">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <TextCell Text="{Description of car }"
+Detail="{ Date}" />
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+<StackLayout Margin="20">
+    <Editor Placeholder="Enter the description of the shopping list"
+Text="{Binding Description}"
+HeightRequest="100" />
+    <Button Text="Add/Choose Item to buy" Clicked="OnChooseButtonClicked"/>
+    async void OnChooseButtonClicked(object sender, EventArgs e)
+{
+await Navigation.PushAsync(new ProductPage((ShopList) this.BindingContext)
+{
+BindingContext = new Product()
+});
+}
+    <ListView Grid.Row="1" Grid.ColumnSpan="2" x:Name="listView"
+Margin="20">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Detail="{Binding Description}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    <Grid>
